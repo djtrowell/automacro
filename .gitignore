@@ -1,0 +1,9 @@
+# Temporary files
+*~
+#*#
+
+# Object files
+*.o
+
+# Compiled file
+automacro

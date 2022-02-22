@@ -5,7 +5,7 @@ CFLAGS+= -rdynamic
 
 
 automacro: main.o clicker_gui.o
-	$(CC) main.o clicker_gui.o $(CFLAGS) -o automacro
+	$(CC) main.o clicker_gui.o -lm $(CFLAGS) -o automacro
 
 
 main.o: src/main.c

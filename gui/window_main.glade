@@ -2,6 +2,11 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkImage" id="Back">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">go-previous</property>
+  </object>
   <object class="GtkImage" id="Load">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -106,6 +111,7 @@
           <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <signal name="switch-page" handler="notebook_switch_page_cb" swapped="no"/>
             <child>
               <!-- n-columns=1 n-rows=2 -->
               <object class="GtkGrid">
@@ -145,6 +151,7 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
                         <property name="image">Load</property>
+                        <signal name="clicked" handler="load_button_clicked_cb" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left-attach">2</property>
@@ -189,7 +196,7 @@
                     <property name="can-focus">False</property>
                     <child>
                       <!-- n-columns=2 n-rows=1 -->
-                      <object class="GtkGrid">
+                      <object class="GtkGrid" id="macro">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="column-spacing">32</property>
@@ -198,10 +205,12 @@
                           <object class="GtkViewport">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="vexpand">True</property>
                             <child>
                               <object class="GtkListBox" id="macro_list">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="vexpand">True</property>
                               </object>
                             </child>
                           </object>
@@ -214,10 +223,12 @@
                           <object class="GtkViewport">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="vexpand">True</property>
                             <child>
                               <object class="GtkListBox" id="action_list">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="vexpand">True</property>
                               </object>
                             </child>
                           </object>
@@ -233,14 +244,66 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkViewport">
+                      <object class="GtkBox" id="load_macros">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">32</property>
                         <child>
-                          <object class="GtkListBox" id="macros_list">
+                          <object class="GtkViewport">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="vexpand">True</property>
+                            <child>
+                              <object class="GtkListBox" id="load_macro_list">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                            </child>
                           </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkButton" id="back_button">
+                                <property name="label" translatable="yes">Back</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="image">Back</property>
+                                <signal name="clicked" handler="back_button_clicked_cb" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
                         </child>
                       </object>
                       <packing>
@@ -248,6 +311,9 @@
                         <property name="title" translatable="yes">page1</property>
                         <property name="position">1</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>

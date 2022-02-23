@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #include "./clicker_gui.h"
+#include "./macro_gui.h"
+#include "./main_gui.h"
 
 GtkBuilder *builder;
 GtkWidget  *window;
@@ -15,7 +17,9 @@ int main(int argc, char *argv[]) {
 	
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 	gtk_builder_connect_signals(builder, NULL);
-
+	
+	main_gui_init(builder, window);
+	macro_gui_init(builder, window);
 	clicker_gui_init(builder, window);
 
 	g_object_unref(builder);
